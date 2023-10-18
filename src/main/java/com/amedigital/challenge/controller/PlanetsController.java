@@ -24,7 +24,7 @@ public class PlanetsController {
 
     @Transactional
     @PostMapping
-    public void cadastrar(@RequestBody PlanetsDTO dto) {
+    public void cadastrar (@RequestBody PlanetsDTO dto) {
         service.cadastrar(dto);
     }
 
@@ -42,8 +42,15 @@ public class PlanetsController {
         return ResponseEntity.noContent().build();
     }
 
+
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id){
+    public ResponseEntity buscarPorId(@PathVariable Long id){
+        var planet = repository.getReferenceById(id);
+        return ResponseEntity.ok(new PlanetDetailsDTO(planet));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity buscarPorNome(@PathVariable Long id){
         var planet = repository.getReferenceById(id);
         return ResponseEntity.ok(new PlanetDetailsDTO(planet));
     }
