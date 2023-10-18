@@ -7,7 +7,7 @@
  <img src="https://img.shields.io/static/v1?label=Tipo&message=Desafio&color=8257E5&labelColor=000000" alt="Desafio" />
 </p>
 
-# Objetivo
+## Objetivo
 
 Desenvolver uma API que gerencie os dados de alguns dos planetas de Star Wars. Para isto devemos criar um (CRUD) que faz parte [desse desafio](https://github.com/AmeDigital/challenge-back-end-hit) para desenvolvedores back-end.
 
@@ -66,7 +66,7 @@ Para fazer as requisições HTTP abaixo, foi utilizada a ferramenta [curl](https
 
 - Adicionar um planeta (com nome, clima e terreno)
 ```
-$ curl -X POST -H 'Content-Type: application/json' -d '{"name": "Hoth","climate": "frozen","terrain": "tundra, ice caves, mountain ranges","filmCount": "1"}' http://localhost:8080/planets 
+$ curl -X POST -H 'Content-Type: application/json' -d '{"name": "Hoth","climate": "frozen","terrain": "tundra, ice caves, mountain ranges","filmCount": "1"}' http://localhost:8080/planets
 
 [
   {
@@ -74,6 +74,19 @@ $ curl -X POST -H 'Content-Type: application/json' -d '{"name": "Hoth","climate"
   "climate": "frozen",
   "terrain": "tundra, ice caves, mountain ranges",
   "filmCount": "1"
+  }
+]
+```
+- Detalhar planeta pelo ID
+```
+$ curl http://localhost:8080/planets/1
+[
+  {
+    "id":1,
+    "name":"Tatooine",
+    "climate":"arid",
+    "terrain":"desert",
+    "filmCount":"5"
   }
 ]
 ```
