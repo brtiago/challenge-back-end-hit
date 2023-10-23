@@ -6,15 +6,38 @@ import com.amedigital.challenge.repository.PlanetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlanetsService {
 
     @Autowired
     private PlanetsRepository repository;
 
-    public void cadastrar(PlanetsDTO dto) {
-        System.out.println("Planeta cadastrado: ");
-        System.out.printf("Nome: %s\nClima: %s\nTerreno: %s\nFilmes: %s", dto.name(), dto.climate(), dto.terrain(), dto.filmCount());
-        repository.save(new Planets(dto));
+    public Planets cadastrar(PlanetsDTO dto) {
+        Planets newPlanet = new Planets(dto);
+        this.savePlanet(newPlanet);
+        return newPlanet;
+    }
+
+    public Planets findById(Long id) throws Exception{
+        return repository.findById(id).orElseThrow(() -> new Exception("ID de Planeta não encontrado"));
+    }
+
+    public Planets findByName(String name) throws Exception{
+        return repository.findByName(name).orElseThrow(() -> new Exception("Planeta não encontrado"));
+    }
+
+    public void removerById(Long id) throws Exception {
+        Planets planet = findById(id);
+        planet.excluir();
+    }
+
+    public List<Planets> listar(){
+        return this.repository.findAll();
+    }
+
+    public void savePlanet(Planets planet){
+        this.repository.save(planet);
     }
 }
