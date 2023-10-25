@@ -4,14 +4,13 @@ import com.amedigital.challenge.dto.PlanetsDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table(name = "planets")
-
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 
+@Entity
+@Table(name = "planets")
 public class Planets {
 
     @Id
